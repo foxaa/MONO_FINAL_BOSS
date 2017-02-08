@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BDAC5D45-B9C4-44C5-8B31-0DDB8EC16C2C}</ProjectGuid>
+    <ProjectGuid>{023CDEE6-497E-43C5-BF7C-4F13DFF5CA15}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.Repository</RootNamespace>
-    <AssemblyName>Project.Repository</AssemblyName>
+    <RootNamespace>Project.Model.Common</RootNamespace>
+    <AssemblyName>Project.Model.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,28 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="GenericRepository.cs" />
+    <Compile Include="IVehicleMakeDomainModel.cs" />
+    <Compile Include="IVehicleModelDomainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitOfWork.cs" />
-    <Compile Include="VehicleMakeRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Project.DAL\Project.DAL.csproj">
       <Project>{ecf7f610-9669-48ac-9add-f5da983b4b03}</Project>
       <Name>Project.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Project.Model.Common\Project.Model.Common.csproj">
-      <Project>{023cdee6-497e-43c5-bf7c-4f13dff5ca15}</Project>
-      <Name>Project.Model.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Project.Model\Project.Model.csproj">
-      <Project>{7881e120-1240-4abc-9851-d3b072ff5440}</Project>
-      <Name>Project.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Project.Repository.Common\Project.Repository.Common.csproj">
-      <Project>{27250f2a-f009-432c-8769-79809e528157}</Project>
-      <Name>Project.Repository.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

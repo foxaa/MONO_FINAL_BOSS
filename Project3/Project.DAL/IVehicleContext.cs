@@ -13,12 +13,7 @@ namespace Project.DAL
     public interface IVehicleContext:IDisposable
     {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
-        DbSet Set(Type entityType);
-        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-        DbEntityEntry Entry(object entity);
+        DbEntityEntry<T> Entry<T>(T entity) where T : class;
         Task<int> SaveChangesAsync();
-        DbSet<VehicleMake> VehicleMakers { get; set; }
-        DbSet<VehicleModel> VehicleModels { get; set; }
-
     }
 }

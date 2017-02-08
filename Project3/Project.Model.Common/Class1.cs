@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.Model.Models
+namespace Project.Model.Common
 {
-    class VehicleMake
+    public class Class1
     {
     }
 }
