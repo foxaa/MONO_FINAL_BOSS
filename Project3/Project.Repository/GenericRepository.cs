@@ -30,11 +30,6 @@ namespace Project.Repository
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> AnyAsync<T>()where T:class
-        {
-            return await _context.Set<T>().AnyAsync();
-        }
-
         public async Task<int> DeleteAsync<T>(Guid id)where T:class
         {
             T entity = await _context.Set<T>().FindAsync(id);
@@ -62,6 +57,13 @@ namespace Project.Repository
             _context.Entry(entity).State = EntityState.Modified;
             return await _context.SaveChangesAsync();
 
+        }
+
+        public async Task<T> GetAsync<T>(Guid id) where T : class
+        {
+            var entity = _context.Set<T>().FindAsync(id);
+            //return await _context.SaveChangesAsync();
+            return await entity;
         }
     }
 }
