@@ -12,6 +12,7 @@ namespace Project.DAL
 {
     public class VehicleContext:DbContext,IVehicleContext
     {
+        
         public VehicleContext() : base("VehicleContext")
         {
         }

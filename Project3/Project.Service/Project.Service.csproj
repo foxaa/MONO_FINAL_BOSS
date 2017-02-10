@@ -43,6 +43,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VehicleMakeService.cs" />
+    <Compile Include="VehicleModelService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project.DAL\Project.DAL.csproj">
@@ -60,6 +61,10 @@
     <ProjectReference Include="..\Project.Repository.Common\Project.Repository.Common.csproj">
       <Project>{27250f2a-f009-432c-8769-79809e528157}</Project>
       <Name>Project.Repository.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Repository\Project.Repository.csproj">
+      <Project>{bdac5d45-b9c4-44c5-8b31-0ddb8ec16c2c}</Project>
+      <Name>Project.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project.Service.Common\Project.Service.Common.csproj">
       <Project>{db8b367b-672c-4c85-a213-cf63d0e23ac2}</Project>

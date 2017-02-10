@@ -8,11 +8,13 @@ using Project.Repository.Common;
 using Project.Repository;
 using Project.Model.Common;
 
+
 namespace Project.Service
 {
     public class VehicleMakeService : IVehicleMakeService
     {
         private IVehicleMakeRepository vmRep;
+
         public VehicleMakeService(IVehicleMakeRepository vm)
         {
             vmRep = vm;
