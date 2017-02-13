@@ -38,7 +38,8 @@ namespace Project.Repository
         public async Task<IEnumerable<IVehicleModelDomainModel>> GetAllAsync()
         {
             //return await genRep.GetAllAsync<IVehicleModelDomainModel>();
-            return Mapper.Map<IEnumerable<IVehicleModelDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
+            var response = Mapper.Map<IEnumerable<IVehicleModelDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
+            return response;
         }
 
         public async Task<IVehicleModelDomainModel> GetAsync(Guid id)

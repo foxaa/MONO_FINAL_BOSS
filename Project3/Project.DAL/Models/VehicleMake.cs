@@ -10,6 +10,7 @@ namespace Project.DAL.Models
 {
     public class VehicleMake
     {
+
         public Guid id { get; set; }
         public string Name { get; set; }
         public string Abrv { get; set; }

@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 
+
 namespace Project.DAL
 {
     public class VehicleContext:DbContext,IVehicleContext

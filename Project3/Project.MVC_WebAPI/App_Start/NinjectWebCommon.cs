@@ -17,6 +17,8 @@ namespace Project.MVC_WebAPI.App_Start
     using Repository;
     using Model;
     using DAL;
+    using System.Linq;
+    using System.Web.Http;
 
     public static class NinjectWebCommon 
     {
@@ -46,13 +48,30 @@ namespace Project.MVC_WebAPI.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            //var kernel = new StandardKernel();
+            //var kernel = new StandardKernel(new NinjectSettings() { LoadExtensions = false });
+            var settings = new NinjectSettings();
+            settings.LoadExtensions = true;
+            settings.ExtensionSearchPatterns = settings.ExtensionSearchPatterns.Union(new string[] { "Project.*.dll" }).ToArray();
+            var kernel = new StandardKernel(settings);
+
             try
             {
+                //kernel.Load("Project*.dll");
+                //kernel.Load(AppDomain.CurrentDomain.GetAssemblies());
+                /*kernel.Load("Project.DAL.data.dll");
+                kernel.Load("Project.DAL.service.dll");
+                kernel.Load("Project.Model.data.dll");
+                kernel.Load("Project.Model.service.dll");
+                kernel.Load("Project.Repository.data.dll");
+                kernel.Load("Project.Repository.service.dll");
+                kernel.Load("Project.Service.data.dll");
+                kernel.Load("Project.Service.service.dll");*/
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-
                 RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new Ninject.Web.WebApi.NinjectDependencyResolver(kernel);
+
                 return kernel;
             }
             catch
@@ -68,15 +87,6 @@ namespace Project.MVC_WebAPI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IVehicleMakeDomainModel>().To<VehicleMakeDomainModel>();
-            kernel.Bind<IVehicleModelDomainModel>().To<VehicleModelDomainModel>();
-            kernel.Bind<IVehicleMakeService>().To<VehicleMakeService>();
-            kernel.Bind<IVehicleModelService>().To<VehicleModelService>();
-            kernel.Bind<IVehicleModelRepository>().To<VehicleModelRepository>();
-            kernel.Bind<IVehicleMakeRepository>().To<VehicleMakeRepository>();
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            kernel.Bind<IGenericRepository>().To<GenericRepository>();
-            kernel.Bind<IVehicleContext>().To<VehicleContext>();
         }        
     }
 }

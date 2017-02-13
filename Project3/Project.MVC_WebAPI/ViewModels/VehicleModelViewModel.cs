@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using Project.DAL.Models;
 
-namespace Project.DAL.Models
+namespace Project.MVC_WebAPI.ViewModels
 {
-    public class VehicleModel
+    public class VehicleModelViewModel
     {
 
         public Guid VehicleModelId { get; set; }
@@ -14,6 +14,6 @@ namespace Project.DAL.Models
         public string Name { get; set; }
         public string Abrv { get; set; }
 
-        public virtual VehicleMake VehicleMake { get; set; }
+        public virtual VehicleMakeViewModel VehicleMake { get; set; }
     }
 }
