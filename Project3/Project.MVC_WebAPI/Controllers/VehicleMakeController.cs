@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Project.Model;
+using Project.Model.Common;
 using Project.MVC_WebAPI.ViewModels;
 using Project.Service.Common;
 using System;
@@ -27,6 +29,17 @@ namespace Project.MVC_WebAPI.Controllers
         {
             var nesto = Mapper.Map<IEnumerable<VehicleMakeViewModel>>(await vmSer.GetAllAsync());
             return Request.CreateResponse(HttpStatusCode.OK, nesto);
+        }
+        [HttpPost]
+        [Route("PostVehMake")]
+        public async Task<HttpResponseMessage> PostVehicleMake(VehicleMakeViewModel entity)
+        {
+            //if(entity==null)
+            //{
+            //    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid input, input=null");
+            //}
+            var create = await vmSer.AddAsync(Mapper.Map<IVehicleMakeDomainModel>(entity));
+            return Request.CreateResponse(HttpStatusCode.OK, create);
         }
     }
 }

@@ -34,16 +34,16 @@ namespace Project.MVC_WebAPI.App_Start
                 config.CreateMap<VehicleMake, VehicleMakeDomainModel>().ReverseMap();
                 config.CreateMap<VehicleMake, IVehicleMakeDomainModel>().ReverseMap();
 
-                config.CreateMap<VehicleMakeDomainModel, VehicleMakeViewModel>().ReverseMap();
-                config.CreateMap<VehicleMakeDomainModel, IVehicleMakeDomainModel>().ReverseMap();
+                //config.CreateMap<VehicleMakeDomainModel, VehicleMakeViewModel>().ReverseMap();
+                //config.CreateMap<VehicleMakeDomainModel, IVehicleMakeDomainModel>().ReverseMap();
                 config.CreateMap<IVehicleMakeDomainModel, VehicleMakeViewModel>().ReverseMap();
 
 
                 config.CreateMap<VehicleModel, VehicleModelDomainModel>().ReverseMap();
                 config.CreateMap<VehicleModel, IVehicleModelDomainModel>().ReverseMap();
 
-                config.CreateMap<VehicleModelDomainModel, VehicleModelViewModel>().ReverseMap();
-                config.CreateMap<VehicleModelDomainModel, IVehicleModelDomainModel>().ReverseMap();
+                //config.CreateMap<VehicleModelDomainModel, VehicleModelViewModel>().ReverseMap();
+                //config.CreateMap<VehicleModelDomainModel, IVehicleModelDomainModel>().ReverseMap();
                 config.CreateMap<IVehicleModelDomainModel, VehicleModelViewModel>().ReverseMap();
             });
             //Mapper.AssertConfigurationIsValid();

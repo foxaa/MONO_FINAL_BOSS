@@ -8,6 +8,7 @@ using Project.DAL;
 using Project.DAL.Models;
 using Project.Model.Common;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace Project.Repository
 {
@@ -37,7 +38,11 @@ namespace Project.Repository
 
         public async Task<IEnumerable<IVehicleMakeDomainModel>> GetAllAsync()
         {
+            //var x = await genRep.GetQueryable<VehicleMake>().Include(s => s.VehicleModels).ToListAsync();
+
             return Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
+
+            //return Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(x);
         }
 
         public async Task<IVehicleMakeDomainModel> GetAsync(Guid id)

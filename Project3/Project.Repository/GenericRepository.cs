@@ -51,13 +51,17 @@ namespace Project.Repository
         {
            return await _context.Set<T>().ToListAsync();
         }
-
+        public IQueryable<T> GetQueryable<T>() where T:class 
+        {
+            return _context.Set<T>();
+        }
         public async Task<int>UpdateAsync<T>(T entity)where T:class
         {
             _context.Entry(entity).State = EntityState.Modified;
             return await _context.SaveChangesAsync();
 
         }
+       
 
         public async Task<T> GetAsync<T>(Guid id) where T : class
         {
