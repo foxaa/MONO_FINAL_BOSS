@@ -12,6 +12,6 @@ namespace Project.MVC_WebAPI.ViewModels
         public Guid id { get; set; }
         public string Name { get; set; }
         public string Abrv { get; set; }
-        public virtual ICollection<VehicleModelViewModel> VehicleModels { get; set; }
+        //public virtual ICollection<VehicleModelViewModel> VehicleModels { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace Project.Repository
         }
         public async Task<int> AddAsync(IVehicleModelDomainModel entity)
         {
-            return await genRep.AddAsync(Mapper.Map<VehicleMake>(entity));
+            return await genRep.AddAsync(Mapper.Map<VehicleModel>(entity));
             //return Mapper.Map<VehicleMake>(await genRep.AddAsync(entity));
             //return await genRep.AddAsync<VehicleMake>(Mapper.Map<VehicleMake>(entity));
         }
@@ -38,20 +38,20 @@ namespace Project.Repository
         public async Task<IEnumerable<IVehicleModelDomainModel>> GetAllAsync()
         {
             //return await genRep.GetAllAsync<IVehicleModelDomainModel>();
-            var response = Mapper.Map<IEnumerable<IVehicleModelDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
+            var response = Mapper.Map<IEnumerable<IVehicleModelDomainModel>>(await genRep.GetAllAsync<VehicleModel>());
             return response;
         }
 
         public async Task<IVehicleModelDomainModel> GetAsync(Guid id)
         {
             //return await genRep.GetAsync<IVehicleModelDomainModel>(id);
-            return Mapper.Map<IVehicleModelDomainModel>(await genRep.GetAsync<VehicleMake>(id));
+            return Mapper.Map<IVehicleModelDomainModel>(await genRep.GetAsync<VehicleModel>(id));
         }
 
         public async Task<int> UpdateAsync(IVehicleModelDomainModel entity)
         {
             //return await genRep.AddAsync(Mapper.Map<VehicleMake>(entity));
-            return await genRep.UpdateAsync(Mapper.Map<VehicleMake>(entity));
+            return await genRep.UpdateAsync(Mapper.Map<VehicleModel>(entity));
         }
     }
 }

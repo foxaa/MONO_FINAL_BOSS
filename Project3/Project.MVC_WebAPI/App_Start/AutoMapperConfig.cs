@@ -26,6 +26,11 @@ namespace Project.MVC_WebAPI.App_Start
                 //config.CreateMap<IVehicleMakeDomainModel, VehicleMakeViewModel>().ReverseMap();
                 //config.CreateMap<VehicleModelViewModel, IVehicleModelDomainModel>().ReverseMap();
                 //config.CreateMap<VehicleMakeViewModel, IVehicleMakeDomainModel>().ReverseMap();
+               
+
+                
+                //config.CreateMap<VehicleMake, IVehicleModelDomainModel>().ReverseMap();
+
                 config.CreateMap<VehicleMake, VehicleMakeDomainModel>().ReverseMap();
                 config.CreateMap<VehicleMake, IVehicleMakeDomainModel>().ReverseMap();
 
