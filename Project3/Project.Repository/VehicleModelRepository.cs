@@ -32,7 +32,7 @@ namespace Project.Repository
 
         public async Task<int> DeleteAsync(Guid id)
         {
-            return await genRep.DeleteAsync<IVehicleModelDomainModel>(id);
+            return await genRep.DeleteAsync<VehicleModel>(id);
         }
 
         public async Task<IEnumerable<IVehicleModelDomainModel>> GetAllAsync()

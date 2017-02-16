@@ -33,16 +33,19 @@ namespace Project.Repository
 
         public async Task<int> DeleteAsync(Guid id)
         {
-            return await genRep.DeleteAsync<IVehicleMakeDomainModel>(id);
+            return await genRep.DeleteAsync<VehicleMake>(id);
         }
-
         public async Task<IEnumerable<IVehicleMakeDomainModel>> GetAllAsync()
         {
-            //var x = await genRep.GetQueryable<VehicleMake>().Include(s => s.VehicleModels).ToListAsync();
+            //var x = await genRep.GetQueryable<VehicleMake>().Include(s => s.VehicleModel).ToListAsync();
 
-            return Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
+            var response= Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
 
-            //return Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(x);
+            //return response;
+
+            //var response = Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(x);
+
+            return response;
         }
 
         public async Task<IVehicleMakeDomainModel> GetAsync(Guid id)

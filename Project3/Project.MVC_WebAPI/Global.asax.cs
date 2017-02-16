@@ -1,4 +1,5 @@
-﻿using Project.MVC_WebAPI.App_Start;
+﻿using Newtonsoft.Json;
+using Project.MVC_WebAPI.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Project.MVC_WebAPI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfig.RegisterMaps();
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Re‌​ferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }
     }
 }

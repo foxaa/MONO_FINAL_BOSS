@@ -16,7 +16,7 @@ namespace Project.DAL
        
         public VehicleContext() : base("VehicleContext")
         {
-            base.Configuration.ProxyCreationEnabled = false;
+           // base.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<VehicleMake> VehicleMakers { get; set; }//kreiramo tablicu

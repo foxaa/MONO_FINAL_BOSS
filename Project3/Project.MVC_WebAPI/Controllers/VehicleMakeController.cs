@@ -34,12 +34,40 @@ namespace Project.MVC_WebAPI.Controllers
         [Route("PostVehMake")]
         public async Task<HttpResponseMessage> PostVehicleMake(VehicleMakeViewModel entity)
         {
-            //if(entity==null)
+            //var vehicleMake = new VehicleMakeViewModel();
+            //if (entity.Name == null || entity.Abrv==null)
             //{
-            //    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid input, input=null");
+            //   return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid input, input=null");
             //}
+
+            //vehicleMake.id = Guid.NewGuid();
+            entity.id = Guid.NewGuid();
+
             var create = await vmSer.AddAsync(Mapper.Map<IVehicleMakeDomainModel>(entity));
             return Request.CreateResponse(HttpStatusCode.OK, create);
+        }
+        [HttpDelete]
+        [Route("DeleteVehMake")]
+        public async Task<HttpResponseMessage> DeleteVehicleMake(Guid id)
+        {
+            var response = await vmSer.DeleteAsync(id);
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+        }
+        [HttpPut]
+        [Route("UpdateVehMake")]
+        public async Task<HttpResponseMessage> UpdateVehicleMake(VehicleMakeViewModel entity)
+        {
+            //var response = await vmSer.UpdateAsync(entity);
+            
+            var response = await vmSer.UpdateAsync(Mapper.Map<IVehicleMakeDomainModel>(entity));
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+        }
+        [HttpGet]
+        [Route("GetSingleVehMake")]
+        public async Task<HttpResponseMessage> GetSingleVehicleMake(Guid id)
+        {
+            var response = Mapper.Map<VehicleMakeViewModel>(await vmSer.GetAsync(id));
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
     }
 }

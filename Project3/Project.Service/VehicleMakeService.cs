@@ -22,6 +22,7 @@ namespace Project.Service
         public async Task<int> AddAsync(IVehicleMakeDomainModel entity)
         {
             return await vmRep.AddAsync(entity);
+            
         }
 
         public async Task<int> DeleteAllAsync(IEnumerable<IVehicleMakeDomainModel> entity)
