@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<script src="../../../Scripts/angular.min.js"></script>
+<script src="VehicleMakeController.js"></script>
+<script src="VehicleMakeService.js"></script>
+<html>
+<head>
+
+
+</head>
+<body>
+    <div ng-controller="VehicleMakeController">
+        <table class="table">
+            <tr>
+                <th>Id </th>
+                <th>Name</th>
+                <th>
+                    Abrv
+                </th>
+                    </tr>
+            <tr ng-repeat="a in makes">
+                <td>{{a.id}}</td>
+                <td>{{a.Name}}</td>
+                <td>
+                    {{a.Abrv}}</td>
+                   </tr>
+                    </table>
+
+                    </div>
+
+</body>
+</html>

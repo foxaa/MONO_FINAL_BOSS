@@ -68,7 +68,5 @@ namespace Project.MVC_WebAPI.Controllers
             var response = Mapper.Map<VehicleModelViewModel>(await vmSer.GetAsync(id));
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
-
-
     }
 }
