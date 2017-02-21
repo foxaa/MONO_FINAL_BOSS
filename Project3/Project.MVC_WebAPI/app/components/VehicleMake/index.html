@@ -1,0 +1,19 @@
+﻿
+ <div ng-controller="listdata">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Abrv</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.Name}}</td>
+                    <td>{{user.Abrv}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
