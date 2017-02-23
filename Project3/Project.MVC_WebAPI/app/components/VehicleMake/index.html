@@ -1,19 +1,24 @@
 ﻿
- <div ng-controller="listdata">
+ <div ng-controller="VehicleMakeController">
+     <a ui-sref="PostVehMake" class="btn btn-primary btn-xs">Add new vehicle maker</a>
+     <br /><br />
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Abrv</th>
+                    <th>Delete</th>
+                    <th>Update</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="user in users">
-                    <td>{{user.id}}</td>
                     <td>{{user.Name}}</td>
                     <td>{{user.Abrv}}</td>
-                </tr>
+                    <!--<td><a class="btn btn-danger btn-xs" href="#/DeleteVehMake/{{user.id}}"></a></td>-->
+                    <td><a ui-sref="DeleteVehMake({makeId: user.id})" class="btn btn-primary btn-xs">Delete</a></td>
+                    <td><a ui-sref="UpdateVehMake({makeId: user.id})" class="btn btn-default btn-xs">Update</a></td>
+            </tr>
             </tbody>
         </table>
     </div>

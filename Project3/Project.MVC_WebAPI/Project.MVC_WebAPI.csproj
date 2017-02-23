@@ -204,7 +204,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app_module.js" />
-    <Content Include="app\components\VehicleMake\app.js" />
+    <Content Include="app\components\VehicleMake\AddVehicleMake.html" />
+    <Content Include="app\components\VehicleMake\UpdateVehicleMake.html" />
+    <Content Include="app\components\VehicleMake\VehicleMakeController.js" />
+    <Content Include="app\components\VehicleMake\DeleteVehicleMake.html" />
     <Content Include="app\components\VehicleMake\index.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
