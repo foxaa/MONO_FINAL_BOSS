@@ -19,6 +19,22 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('VehModel', {
+            url:'/VehicleModel',
+            views:{
+                "root":{
+                    templateUrl:'app/components/VehicleModel/VehicleModelView.html'
+                }
+            }
+        })
+        .state('PostVehModel', {
+            url: '/AddVehicleModel',
+            views: {
+                "root": {
+                    templateUrl:'app/components/VehicleModel/AddVehicleModel.html'
+                }
+            }
+        })
         .state('DeleteVehMake', {
             url: '/DeleteVehMake?makeId',
             views: {
@@ -27,11 +43,27 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('DeleteVehModel', {
+            url: '/DeleteVehModel?modelId',
+            views:{
+                "root":{
+                    templateUrl:'app/components/VehicleModel/DeleteVehicleModel.html'
+                }
+            }
+        })
         .state('UpdateVehMake', {
             url: '/UpdateVehMake?makeId',
             views: {
                 "root": {
                     templateUrl:'app/components/VehicleMake/UpdateVehicleMake.html'
+                }
+            }
+        })
+        .state('DetailsVehMake', {
+            url: '/DetailsVehMake?makeId',
+            views: {
+                "root": {
+                    templateUrl:'app/components/VehicleMake/DetailsVehicleMake.html'
                 }
             }
         })

@@ -41,9 +41,16 @@ namespace Project.MVC_WebAPI.Controllers
         [Route("PostVehModel")]
         public async Task<HttpResponseMessage> PostVehicleModels(VehicleModelDomainModel entity)
         {
-            entity.VehicleModelId = Guid.NewGuid();
-            var response = await vmSer.AddAsync(Mapper.Map<IVehicleModelDomainModel>(entity));
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            try
+            {
+                entity.VehicleModelId = Guid.NewGuid();
+                var response = await vmSer.AddAsync(Mapper.Map<IVehicleModelDomainModel>(entity));
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Couldn't add vehicle model.");
+            }
         }
         [HttpDelete]
         [Route("DeleteVehModel")]

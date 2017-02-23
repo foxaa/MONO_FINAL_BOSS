@@ -1,4 +1,4 @@
-﻿
+﻿<h1><a ui-sref="VehModel" class="btn btn-primary btn-xs">Models</a></h1>
  <div ng-controller="VehicleMakeController">
      <a ui-sref="PostVehMake" class="btn btn-primary btn-xs">Add new vehicle maker</a>
      <br /><br />
@@ -9,6 +9,7 @@
                     <th>Abrv</th>
                     <th>Delete</th>
                     <th>Update</th>
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,7 @@
                     <!--<td><a class="btn btn-danger btn-xs" href="#/DeleteVehMake/{{user.id}}"></a></td>-->
                     <td><a ui-sref="DeleteVehMake({makeId: user.id})" class="btn btn-primary btn-xs">Delete</a></td>
                     <td><a ui-sref="UpdateVehMake({makeId: user.id})" class="btn btn-default btn-xs">Update</a></td>
+                    <td><a ui-sref="DetailsVehMake({makeId: user.id})" class="btn btn-default btn-xs">Details</a></td>
             </tr>
             </tbody>
         </table>

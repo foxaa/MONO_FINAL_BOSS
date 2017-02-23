@@ -1,0 +1,29 @@
+﻿<div ng-controller="VehicleModelController">
+    <a ui-sref="PostVehModel" class="btn btn-primary btn-xs">Add new vehicle model</a>
+    <br /><br />
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Vehicle Make Name</th>
+                <th>Vehicle Make Abrv</th>
+                <th>Name</th>
+                <th>Abrv</th>
+                <th>Delete</th>
+                <th>Update</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="model in models">
+                <td>{{model.VehicleMake.Name}}</td>
+                <td>{{model.VehicleMake.Abrv}}</td>
+                <td>{{model.Name}}</td>
+                <td>{{model.Abrv}}</td>
+                <!--<td><a class="btn btn-danger btn-xs" href="#/DeleteVehMake/{{user.id}}"></a></td>-->
+                <td><a ui-sref="DeleteVehModel({modelId: model.VehicleModelId })" class="btn btn-primary btn-xs">Delete</a></td>
+                <!--<td><a ui-sref="UpdateVehMake({makeId: user.id})" class="btn btn-default btn-xs">Update</a></td>
+                <td><a ui-sref="DetailsVehMake({makeId: user.id})" class="btn btn-default btn-xs">Details</a></td>-->-->
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -28,7 +28,8 @@ namespace Project.MVC_WebAPI
                         "~/Scripts/angular-ui-router.js"));
             bundles.Add(new ScriptBundle("~/bundles/vehicleApp").Include(
                       "~/app/app_module.js",
-                       "~/app/components/VehicleMake/VehicleMakeController.js"
+                       "~/app/components/VehicleMake/VehicleMakeController.js",
+                       "~/app/components/VehicleModel/VehicleModelController.js"
 
     ));
         }

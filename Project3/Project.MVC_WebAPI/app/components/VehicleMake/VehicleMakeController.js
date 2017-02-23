@@ -6,6 +6,7 @@
 //});
 routerApp.controller('VehicleMakeController', ['$scope', '$http', '$location', '$window', '$stateParams', VehicleMakeController]);
 function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
+
     $http.get('/api/VehicleMake/GetVehMake').then(function (response) {
         $scope.users = response.data;  //ajax request to fetch data into $scope.data
     });
@@ -42,25 +43,14 @@ function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
         var id= $stateParams.makeId;
         $http.get("api/VehicleMake/GetSingleVehMake?id=" +id)
             .then(function (response) {
-                $scope.Name = response.Name;
-                $scope.Abrv = response.Abrv;
+                $scope.Name = response.data.Name;
+                $scope.Abrv = response.data.Abrv;
             })
     }
 
-    //if ($stateParams.makeId) {
-    //    $scope.id = $stateParams.makeId;
-
-    //    $http.get('api/VehicleMake/GetSingleVehMake' + $scope.id).success(function (data) {
-    //        $scope.Name = data.Name;
-    //        $scope.Abrv = data.Abrv;
-    //        //$scope.DepartmentID = data.DepartmentID
-    //    });
-
-    //}
-
-
     $scope.Update = function () {
         var vehicleData = {
+            Id: $stateParams.makeId,
             Name: $scope.Name,
             Abrv: $scope.Abrv,
         };
@@ -71,5 +61,12 @@ function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
         })
     }
 
-
+    $scope.Details= function () {
+        var id = $stateParams.makeId;
+        $http.get("api/VehicleMake/GetSingleVehMake?id=" + id)
+            .then(function (response) {
+                $scope.Name = response.data.Name;
+                $scope.Abrv = response.data.Abrv;
+            })
+    }
 }
