@@ -27,8 +27,8 @@ namespace Project.MVC_WebAPI.Controllers
         [Route("GetVehMake")]
         public async Task<HttpResponseMessage> GetVehicleMake()
         {
-            var nesto = Mapper.Map<IEnumerable<VehicleMakeViewModel>>(await vmSer.GetAllAsync());
-            return Request.CreateResponse(HttpStatusCode.OK, nesto);
+            var response = Mapper.Map<IEnumerable<VehicleMakeViewModel>>(await vmSer.GetAllAsync());
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
         [HttpPost]
         [Route("PostVehMake")]

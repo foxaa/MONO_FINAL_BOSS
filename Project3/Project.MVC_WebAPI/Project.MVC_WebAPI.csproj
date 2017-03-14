@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app_module.js" />
+    <Content Include="app\components\pagination\dirPagination.js" />
     <Content Include="app\components\VehicleMake\AddVehicleMake.html" />
     <Content Include="app\components\VehicleMake\DetailsVehicleMake.html" />
     <Content Include="app\components\VehicleMake\UpdateVehicleMake.html" />
@@ -212,6 +213,8 @@
     <Content Include="app\components\VehicleMake\index.html" />
     <Content Include="app\components\VehicleModel\AddVehicleModel.html" />
     <Content Include="app\components\VehicleModel\DeleteVehicleModel.html" />
+    <Content Include="app\components\VehicleModel\DetailsVehicleModel.html" />
+    <Content Include="app\components\VehicleModel\UpdateVehicleModel.html" />
     <Content Include="app\components\VehicleModel\VehicleModelController.js" />
     <Content Include="app\components\VehicleModel\VehicleModelView.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

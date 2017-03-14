@@ -1,33 +1,33 @@
-﻿//routerApp.controller('listdata', function ($scope, $http) {
-//    //$scope.users = []; //declare an empty array
-//    $http.get('/api/VehicleMake/GetVehMake').then(function (response) {
-//        $scope.users = response.data;  //ajax request to fetch data into $scope.data
-//    });
-//});
+﻿
 routerApp.controller('VehicleMakeController', ['$scope', '$http', '$location', '$window', '$stateParams', VehicleMakeController]);
 function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
 
     $http.get('/api/VehicleMake/GetVehMake').then(function (response) {
-        $scope.users = response.data;  //ajax request to fetch data into $scope.data
+        $scope.makers = response.data;  
     });
 
     $scope.Close = function () {
         $location.path('/VehicleMake');
     }
     $scope.Add = function () {
-        var vehicleData = {
-            Name: $scope.Name,
-            Abrv: $scope.Abrv,
-        };
-        $http.post("api/VehicleMake/PostVehMake", vehicleData)
-            .then(function (response) {
-                $window.alert("Maker added successful.");
-                $location.path('/VehicleMake');
-            }, function (response) {
-                $window.alert("Error: " + response.error);
-            });
+        if ($scope.Name == undefined || $scope.Abrv == undefined) {
+            $window.alert("Please enter all properties.");
+        } else {
+            var vehicleData = {
+                Name: $scope.Name,
+                Abrv: $scope.Abrv,
+            };
+            $http.post("api/VehicleMake/PostVehMake", vehicleData)
+                .then(function (response) {
+                    $window.alert("Maker added successful.");
+                    $location.path('/VehicleMake');
+                }, function (response) {
+                    $window.alert("Error: " + response.error);
+                });
+        }
     }
     $scope.Delete = function () {
+        
         var id = $stateParams.makeId;
         $http.delete("api/VehicleMake/DeleteVehMake?id=" + id)
             .then(function (response) {
@@ -68,5 +68,10 @@ function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
                 $scope.Name = response.data.Name;
                 $scope.Abrv = response.data.Abrv;
             })
+    }
+
+    $scope.sort = function (keyname) {
+        $scope.sortKey = keyname;   //set the sortKey to the param passed
+        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
 }

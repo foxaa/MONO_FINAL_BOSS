@@ -33,8 +33,8 @@ namespace Project.MVC_WebAPI.Controllers
         [Route("GetVehMod")]
         public async Task<HttpResponseMessage> GetVehicleModels()
         {
-            var nesto = Mapper.Map<IEnumerable<VehicleModelViewModel>>(await vmSer.GetAllAsync());
-            return Request.CreateResponse(HttpStatusCode.OK, nesto);
+            var response= Mapper.Map<IEnumerable<VehicleModelViewModel>>(await vmSer.GetAllAsync());
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         [HttpPost]

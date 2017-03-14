@@ -1,4 +1,4 @@
-﻿var routerApp = angular.module('routerApp', ['ui.router']);
+﻿var routerApp = angular.module('routerApp', ['ui.router','angularUtils.directives.dirPagination']);
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/VehicleMake');
 
@@ -59,11 +59,27 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('UpdateVehModel', {
+            url: '/UpdateVehModel?modelId',
+            views: {
+                "root": {
+                    templateUrl:'/app/components/VehicleModel/UpdateVehicleModel.html'
+                }
+            }
+        })
         .state('DetailsVehMake', {
             url: '/DetailsVehMake?makeId',
             views: {
                 "root": {
                     templateUrl:'app/components/VehicleMake/DetailsVehicleMake.html'
+                }
+            }
+        })
+        .state('DetailsVehModel', {
+            url: '/DetailsVehModel?modelId',
+            views: {
+                "root": {
+                    templateUrl:'app/components/VehicleModel/DetailsVehicleModel.html'
                 }
             }
         })
