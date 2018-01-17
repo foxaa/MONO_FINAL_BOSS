@@ -18,19 +18,18 @@ using Project.Model.Common;
 
 namespace Project.MVC_WebAPI.Controllers
 {
-    [RoutePrefix("api/VehicleModel")]
+    [RoutePrefix("api/vehicle-model")]
     public class VehicleModelController : ApiController
     {
 
         private IVehicleModelService vmSer;
-        //private VehicleModelController() { }
         public VehicleModelController(IVehicleModelService cont)
         {
             this.vmSer = cont;
         }
         //GET: api/VehicleModel
         [HttpGet]
-        [Route("GetVehMod")]
+        [Route("get-model")]
         public async Task<HttpResponseMessage> GetVehicleModels()
         {
             var response= Mapper.Map<IEnumerable<VehicleModelViewModel>>(await vmSer.GetAllAsync());
@@ -38,7 +37,7 @@ namespace Project.MVC_WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("PostVehModel")]
+        [Route("post-model")]
         public async Task<HttpResponseMessage> PostVehicleModels(VehicleModelDomainModel entity)
         {
             try
@@ -53,27 +52,36 @@ namespace Project.MVC_WebAPI.Controllers
             }
         }
         [HttpDelete]
-        [Route("DeleteVehModel")]
+        [Route("delete-model")]
         public async Task<HttpResponseMessage> DeleteVehicleModel(Guid id)
         {
             var response = await vmSer.DeleteAsync(id);
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
         [HttpPut]
-        [Route("UpdateVehModel")]
+        [Route("update-model")]
         public async Task<HttpResponseMessage> UpdateVehicleModel(VehicleModelViewModel entity)
         {
-            //var response = await vmSer.UpdateAsync(entity);
 
             var response = await vmSer.UpdateAsync(Mapper.Map<IVehicleModelDomainModel>(entity));
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
         [HttpGet]
-        [Route("GetSingleVehModel")]
+        [Route("get-single-model")]
         public async Task<HttpResponseMessage> GetSingleVehicleModel(Guid id)
         {
             var response = Mapper.Map<VehicleModelViewModel>(await vmSer.GetAsync(id));
             return Request.CreateResponse(HttpStatusCode.OK, response);
+        }
+        [HttpGet]
+        [Route("sort-model")]
+        public async Task<HttpResponseMessage> SortVehicleModel(int? page, string sortOrder, string searchString)
+        {
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            var response = Mapper.Map<IEnumerable<VehicleModelViewModel>>(await vmSer.SortModelAsync(pageNumber, pageSize, sortOrder, searchString));
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+
         }
     }
 }

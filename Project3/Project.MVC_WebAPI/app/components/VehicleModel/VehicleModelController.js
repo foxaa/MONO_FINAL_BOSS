@@ -1,45 +1,43 @@
 ﻿routerApp.controller('VehicleModelController', ['$scope', '$http', '$location', '$window', '$stateParams', VehicleModelController]);
 function VehicleModelController($scope, $http, $location, $window, $stateParams) {
-    $http.get('/api/VehicleModel/GetVehMod').then(function (response) {
-        $scope.models = response.data;  
-    });
-    $scope.Close = function () {
-        $location.path('/VehicleModel');
+
+    $scope.close = function () {
+        $location.path('/vehicle-model');
     }
 
     $scope.getMakers = function () {
-        $http.get('/api/VehicleMake/GetVehMake').then(function (response) {
+        $http.get('/api/vehicle-make/get-make').then(function (response) {
             $scope.makers = response.data;  
         }, function (response) {
             $window.alert("Error: " + response.data.Message);
         });
     }
     
-    $scope.Add = function () {
-        if ($scope.Name == undefined || $scope.Abrv == undefined || $scope.VehicleMakeId == undefined) {
+    $scope.add = function () {
+        if ($scope.name == undefined || $scope.abrv == undefined || $scope.vehicleMakeId == undefined) {
             $window.alert("Please add all properties.");
         }
         else {
             var vehicleData = {
-                VehicleMakeId: $scope.VehicleMakeId,
-                Name: $scope.Name,
-                Abrv: $scope.Abrv,
+                VehicleMakeId: $scope.vehicleMakeId,
+                Name: $scope.name,
+                Abrv: $scope.abrv,
             };
-            $http.post("api/VehicleModel/PostVehModel", vehicleData)
+            $http.post("api/vehicle-model/post-model", vehicleData)
                 .then(function (response) {
                     $window.alert("Model added successfuly.");
-                    $location.path('/VehicleModel');
+                    $location.path('/vehicle-model');
                 }, function (response) {
                     $window.alert("Error: " + response.data.Message);
                 })
         }
     }
-    $scope.Delete = function () {
+    $scope.delete = function () {
         var id = $stateParams.modelId;
-        $http.delete("api/VehicleModel/DeleteVehModel?id=" + id)
+        $http.delete("api/vehicle-model/delete-model?id=" + id)
             .then(function (response) {
                 $window.alert("Model deleted successfuly.");
-                $location.path('/VehicleModel');
+                $location.path('/vehicle-model');
             }, function (response) {
                 $window.alert("Error:" + response.error);
                 $location.path('/VehicleModel');
@@ -47,44 +45,51 @@ function VehicleModelController($scope, $http, $location, $window, $stateParams)
             );
     }
 
-    $scope.UpdateGetId = function () {
+    $scope.updateGetId = function () {
         var id = $stateParams.modelId;
-        $http.get("api/VehicleModel/GetSingleVehModel?id=" + id)
+        $http.get("api/vehicle-model/get-single-model?id=" + id)
             .then(function(response)
             {
-                $scope.VehicleMakeId=response.data.VehicleMakeId;
-                $scope.Name = response.data.Name;
-                $scope.Abrv = response.data.Abrv;
+                $scope.vehicleMakeId=response.data.VehicleMakeId;
+                $scope.name = response.data.Name;
+                $scope.abrv = response.data.Abrv;
             })
     }
-    $scope.Update = function () {
+    $scope.update = function () {
         var vehicleData = {
             VehicleModelId: $stateParams.modelId,
-            VehicleMakeId:  $scope.VehicleMakeId,
-            Name: $scope.Name,
-            Abrv: $scope.Abrv,
+            VehicleMakeId:  $scope.vehicleMakeId,
+            Name: $scope.name,
+            Abrv: $scope.abrv,
         };
-        $http.put("api/VehicleModel/UpdateVehModel", vehicleData)
+        $http.put("api/vehicle-model/update-model", vehicleData)
          .then(function (response) {
              $window.alert("Model updated succesfuly.");
-             $location.path('/VehicleModel');
+             $location.path('/vehicle-model');
          }, function (response) {
              $window.alert("Error:" + response.error);
-             $location.path('/VehicleModel');
+             $location.path('/vehicle-model');
          }
          );
     }
-    $scope.Details = function () {
+    $scope.details = function () {
         var id = $stateParams.modelId;
-        $http.get("api/VehicleModel/GetSingleVehModel?id=" + id)
+        $http.get("api/vehicle-model/get-single-model?id=" + id)
             .then(function (response) {
-                $scope.VehicleMakeId = response.data.VehicleMakeId;
-                $scope.Name = response.data.Name;
-                $scope.Abrv = response.data.Abrv;
+                $scope.vehicleMakeId = response.data.VehicleMakeId;
+                $scope.name = response.data.Name;
+                $scope.abrv = response.data.Abrv;
             })
     }
-    $scope.sort = function (keyname) {
-        $scope.sortKey = keyname;   //set the sortKey to the param passed
-        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+
+    $scope.sortVehModel = function (page, sortOrder, searchString) {
+        $scope.sortOrd = sortOrder;
+        console.log(sortOrder);
+        $http.get("api/vehicle-model/sort-model?page="+page+"&sortOrder="+sortOrder+"&searchString="+searchString)
+            .then(function (response) {
+                $scope.models = response.data;
+                $location.path('/vehicle-model');               
+            })
     }
+
 }

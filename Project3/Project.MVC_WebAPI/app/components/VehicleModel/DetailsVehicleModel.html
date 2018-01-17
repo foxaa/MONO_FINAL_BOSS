@@ -1,4 +1,4 @@
-﻿<div id="edit" aria-labelledby="edit" aria-hidden="true" ng-controller="VehicleModelController" ng-init="Details()">
+﻿<div id="edit" aria-labelledby="edit" aria-hidden="true" ng-controller="VehicleModelController" ng-init="details()">
     <div class="modal-dialog">
         <div class="modal-content">
             <form class="form-horizontal" id="edit-form">
@@ -6,18 +6,18 @@
                     <div class="form-group">
                         <label for="edit-name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <label ng-bind="Name"></label>
+                            <label ng-bind="name"></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edit-abrv" class="col-sm-2 control-label">Abrv</label>
                         <div class="col-sm-10">
-                            <label ng-bind="Abrv"></label>
+                            <label ng-bind="abrv"></label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="Close()">Close</button>
+                    <button type="button" class="btn btn-default" ng-click="close()">Close</button>
                 </div>
             </form>
         </div>

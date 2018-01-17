@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Project.Repository.Common;
 using Project.Model.Common;
 
 namespace Project.Service.Common
@@ -16,5 +15,6 @@ namespace Project.Service.Common
         Task<int> DeleteAllAsync(IEnumerable<IVehicleModelDomainModel> entity);
         Task<int> UpdateAsync(IVehicleModelDomainModel entity);
         Task<IVehicleModelDomainModel> GetAsync(Guid id);
+        Task<IEnumerable<IVehicleModelDomainModel>> SortModelAsync(int pageNumber, int pageSize, string sortOrder, string searchString);
     }
 }

@@ -57,16 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="IVehicleMakeDomainModel.cs" />
     <Compile Include="IVehicleModelDomainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Project.DAL\Project.DAL.csproj">
-      <Project>{ecf7f610-9669-48ac-9add-f5da983b4b03}</Project>
-      <Name>Project.DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

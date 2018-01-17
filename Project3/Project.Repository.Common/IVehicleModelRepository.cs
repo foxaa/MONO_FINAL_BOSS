@@ -15,5 +15,6 @@ namespace Project.Repository.Common
         Task<int> DeleteAllAsync(IEnumerable<IVehicleModelDomainModel> entity);
         Task<int> UpdateAsync(IVehicleModelDomainModel entity);
         Task<IVehicleModelDomainModel> GetAsync(Guid id);
+        Task<IEnumerable<IVehicleModelDomainModel>> SortModelAsync(int pageNumber, int pageSize,string sortOrder, string searchString);
     }
 }

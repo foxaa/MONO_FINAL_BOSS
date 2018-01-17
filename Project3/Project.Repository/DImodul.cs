@@ -9,7 +9,7 @@ using Project.Repository.Common;
 
 namespace Project.Repository
 {
-    public class DImodul : NinjectModule
+    public class DIModul : NinjectModule
     {
         public override void Load()
         {

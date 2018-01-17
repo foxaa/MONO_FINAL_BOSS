@@ -7,6 +7,7 @@ using Project.Model.Common;
 using Project.Repository.Common;
 using AutoMapper;
 using Project.DAL.Models;
+using PagedList;
 
 
 namespace Project.Repository
@@ -21,8 +22,6 @@ namespace Project.Repository
         public async Task<int> AddAsync(IVehicleModelDomainModel entity)
         {
             return await genRep.AddAsync(Mapper.Map<VehicleModel>(entity));
-            //return Mapper.Map<VehicleMake>(await genRep.AddAsync(entity));
-            //return await genRep.AddAsync<VehicleMake>(Mapper.Map<VehicleMake>(entity));
         }
 
         public async Task<int> DeleteAllAsync(IEnumerable<IVehicleModelDomainModel> entity)
@@ -37,20 +36,61 @@ namespace Project.Repository
 
         public async Task<IEnumerable<IVehicleModelDomainModel>> GetAllAsync()
         {
-            //return await genRep.GetAllAsync<IVehicleModelDomainModel>();
             var response = Mapper.Map<IEnumerable<IVehicleModelDomainModel>>(await genRep.GetAllAsync<VehicleModel>());
             return response;
         }
 
         public async Task<IVehicleModelDomainModel> GetAsync(Guid id)
         {
-            //return await genRep.GetAsync<IVehicleModelDomainModel>(id);
             return Mapper.Map<IVehicleModelDomainModel>(await genRep.GetAsync<VehicleModel>(id));
+        }
+
+        public async Task<IEnumerable<IVehicleModelDomainModel>> SortModelAsync(int pageNumber, int pageSize, string sortOrder, string searchString)
+        {
+            IEnumerable<IVehicleModelDomainModel> modelEntities;
+            if (string.IsNullOrWhiteSpace(searchString) || searchString == "undefined")
+            {
+                modelEntities = Mapper.Map<IEnumerable<IVehicleModelDomainModel>>(await genRep.GetAllAsync<VehicleModel>());
+            }
+            else
+                modelEntities = Mapper.Map<IEnumerable<IVehicleModelDomainModel>>(await genRep.GetAllAsync<VehicleModel>()).Where(vm => vm.Name.Contains(searchString));
+
+            switch (sortOrder)
+            {
+                case "MakeName_desc":
+                    modelEntities= modelEntities.OrderByDescending(v => v.VehicleMake.Name);
+                    break;
+                case "MakeName_asc":
+                    modelEntities= modelEntities.OrderBy(v => v.VehicleMake.Name);
+                    break;
+                case "MakeAbrv_desc":
+                    modelEntities= modelEntities.OrderByDescending(v => v.VehicleMake.Abrv);
+                    break;
+                case "MakeAbrv_asc":
+                    modelEntities= modelEntities.OrderBy(v => v.VehicleMake.Abrv);
+                    break;
+                case "Name_desc":
+                    modelEntities= modelEntities.OrderByDescending(v => v.Name);
+                    break;
+                case "Abrv_desc":
+                    modelEntities= modelEntities.OrderByDescending(v => v.Abrv);
+                    break;
+
+                case "Abrv":
+                    modelEntities= modelEntities.OrderBy(v => v.Abrv);
+                    break;
+
+                default:
+                    modelEntities= modelEntities.OrderBy(v => v.Name);
+                    break;
+
+
+            }
+            return modelEntities.ToPagedList(pageNumber, pageSize);
         }
 
         public async Task<int> UpdateAsync(IVehicleModelDomainModel entity)
         {
-            //return await genRep.AddAsync(Mapper.Map<VehicleMake>(entity));
             return await genRep.UpdateAsync(Mapper.Map<VehicleModel>(entity));
         }
     }

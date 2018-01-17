@@ -7,7 +7,7 @@ using Ninject.Modules;
 
 namespace Project.DAL
 {
-    public class DImodul : NinjectModule
+    public class DIModul : NinjectModule
     {
         public override void Load()
         {

@@ -9,6 +9,7 @@ using Project.DAL.Models;
 using Project.Model.Common;
 using AutoMapper;
 using System.Data.Entity;
+using PagedList;
 
 namespace Project.Repository
 {
@@ -36,21 +37,45 @@ namespace Project.Repository
             return await genRep.DeleteAsync<VehicleMake>(id);
         }
         public async Task<IEnumerable<IVehicleMakeDomainModel>> GetAllAsync()
-        {
-            //var x = await genRep.GetQueryable<VehicleMake>().Include(s => s.VehicleModel).ToListAsync();
+        {         
 
-            var response= Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
-
-            //return response;
-
-            //var response = Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(x);
-
+            var response = Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
             return response;
         }
 
         public async Task<IVehicleMakeDomainModel> GetAsync(Guid id)
         {
             return Mapper.Map<IVehicleMakeDomainModel>(await genRep.GetAsync<VehicleMake>(id));
+        }
+
+        public async Task<IEnumerable<IVehicleMakeDomainModel>> SortMakeAsync(int pageNumber, int pageSize,string sortOrder,string searchString)
+        {
+            IEnumerable<IVehicleMakeDomainModel> makeEntities;
+            if (string.IsNullOrWhiteSpace(searchString) || searchString=="undefined")
+            {
+                makeEntities= Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
+            }
+            else
+                makeEntities= Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>()).Where(vm => vm.Name.Contains(searchString));
+
+            switch (sortOrder)
+            {
+                case "Name_desc":
+                    makeEntities=makeEntities.OrderByDescending(v => v.Name);
+                    break;
+                case "Abrv_desc":
+                    makeEntities= makeEntities.OrderByDescending(v => v.Abrv);
+                    break;
+                case "Abrv":
+                    makeEntities= makeEntities.OrderBy(v => v.Abrv);
+                    break;
+                default:
+                    makeEntities= makeEntities.OrderBy(v => v.Name);
+                    break;
+
+            }
+            return makeEntities.ToPagedList(pageNumber, pageSize);
+            
         }
 
         public async Task<int> UpdateAsync(IVehicleMakeDomainModel entity)

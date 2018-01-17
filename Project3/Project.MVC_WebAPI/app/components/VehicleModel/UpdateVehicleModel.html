@@ -1,4 +1,4 @@
-﻿<div id="edit" aria-labelledby="edit" aria-hidden="true" ng-controller="VehicleModelController" ng-init="UpdateGetId()">
+﻿<div id="edit" aria-labelledby="edit" aria-hidden="true" ng-controller="VehicleModelController" ng-init="updateGetId()">
     <div class="modal-dialog">
         <div class="modal-content">
             <form class="form-horizontal" id="edit-form">
@@ -11,19 +11,19 @@
                     <div class="form-group">
                         <label for="edit-name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="edit-name" name="name" placeholder="name" ng-model="Name" required>
+                            <input type="text" class="form-control" id="edit-name" name="name" placeholder="name" ng-model="name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edit-abrv" class="col-sm-2 control-label">Abrv</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="edit-abrv" name="abrv" placeholder="abrv" ng-model="Abrv">
+                            <input type="text" class="form-control" id="edit-abrv" name="abrv" placeholder="abrv" ng-model="abrv">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="Close()">Close</button>
-                    <button type="submit" class="btn btn-primary" ng-click="Update()">Update</button>
+                    <button type="button" class="btn btn-default" ng-click="close()">Close</button>
+                    <button type="submit" class="btn btn-primary" ng-click="update()">Update</button>
                 </div>
             </form>
         </div>

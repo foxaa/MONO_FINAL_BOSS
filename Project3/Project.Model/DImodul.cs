@@ -8,7 +8,7 @@ using Project.Model.Common;
 
 namespace Project.Model
 {
-    public class DImodul : NinjectModule
+    public class DIModul : NinjectModule
     {
         public override void Load()
         {

@@ -15,5 +15,6 @@ namespace Project.Service.Common
         Task<int> DeleteAllAsync(IEnumerable<IVehicleMakeDomainModel> entity);
         Task<int> UpdateAsync(IVehicleMakeDomainModel entity);
         Task<IVehicleMakeDomainModel> GetAsync(Guid id);
+        Task<IEnumerable<IVehicleMakeDomainModel>> SortMakeAsync(int pageNumber, int pageSize,string sortOrder, string searchString);
     }
 }

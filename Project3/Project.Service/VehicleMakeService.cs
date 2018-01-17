@@ -45,6 +45,11 @@ namespace Project.Service
             return await vmRep.GetAsync(id);
         }
 
+        public async Task<IEnumerable<IVehicleMakeDomainModel>> SortMakeAsync(int pageNumber, int pageSize, string sortOrder,string searchString)
+        {
+            return await vmRep.SortMakeAsync(pageNumber,pageSize,sortOrder,searchString);
+        }
+
         public async Task<int> UpdateAsync(IVehicleMakeDomainModel entity)
         {
             return await vmRep.UpdateAsync(entity);

@@ -1,28 +1,26 @@
-﻿<script src="../pagination/dirPagination.js"></script>
-<div ng-controller="VehicleModelController">
+﻿<div ng-controller="VehicleModelController" ng-init="sortVehModel(page,'Name_desc',searchString)">
     <a ui-sref="PostVehModel" class="btn btn-primary btn-xs">Add new vehicle model</a>
     <br /><br />
-    <form class="form-inline">
+    <form ng-submit="sortVehModel(page,sortOrd,searchString)" class="form-inline">
         <div class="form-group">
             <label>Search</label>
-            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            <input type="text" ng-model="searchString" class="form-control" placeholder="Search">
         </div>
     </form>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th ng-click="sort('VehicleMake.Name')">Vehicle Make Name<span class="glyphicon sort-icon" ng-show="sortKey=='vehicle_make_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-                <th ng-click="sort('VehicleMake.Abrv')">Vehicle Make Abrv<span class="glyphicon sort-icon" ng-show="sortKey=='vehicle_make_abrv'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-                <th ng-click="sort('Name')">Name<span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-                <th ng-click="sort('Abrv')">Abrv<span class="glyphicon sort-icon" ng-show="sortKey=='abrv'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                <th>Vehicle Make Name<a ng-click="sortVehModel(page,'MakeName_asc',searchString)">^</a><a ng-click="sortVehModel(page,'MakeName_desc',searchString)">ˇ</a></th>
+                <th>Vehicle Make Abrv<a ng-click="sortVehModel(page,'MakeAbrv_asc',searchString)">^</a><a ng-click="sortVehModel(page,'MakeAbrv_desc',searchString)">ˇ</a></th>
+                <th>Name<a ng-click="sortVehModel(page,null,searchString)">^</a><a ng-click="sortVehModel(page,'Name_desc',searchString)">ˇ</a></th>
+                <th>Abrv<a ng-click="sortVehModel(page,'Abrv',searchString)">^</a><a ng-click="sortVehModel(page,'Abrv_desc',searchString)">ˇ</a></th>
                 <th>Delete</th>
                 <th>Update</th>
                 <th>Details</th>
             </tr>
         </thead>
         <tbody>
-            <!--<tr ng-repeat="model in models|orderBy:sortKey:reverse|filter:search">-->
-            <tr dir-paginate="model in models|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+            <tr ng-repeat="model in models">
                 <td>{{model.VehicleMake.Name}}</td>
                 <td>{{model.VehicleMake.Abrv}}</td>
                 <td>{{model.Name}}</td>
@@ -33,8 +31,10 @@
             </tr>
         </tbody>
     </table>
-    <dir-pagination-controls max-size="5"
-                             direction-links="true"
-                             boundary-links="true">
-    </dir-pagination-controls>
+    <form ng-submit="sortVehModel(page,sortOrd,searchString)" class="form-inline">
+        <div class="form-group">
+            <input type="text" ng-model="page" class="form-control" placeholder="Page Number">
+        </div>
+    </form>
+    Sorted by:{{sortOrd}}
 </div>

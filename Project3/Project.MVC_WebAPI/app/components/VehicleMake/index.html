@@ -1,37 +1,37 @@
-﻿<script src="../pagination/dirPagination.js"></script>
-<h1><a ui-sref="VehModel" class="btn btn-primary btn-xs">Models</a></h1>
- <div ng-controller="VehicleMakeController">
-     <a ui-sref="PostVehMake" class="btn btn-primary btn-xs">Add new vehicle maker</a>
-     <br /><br />
-     <form class="form-inline">
-         <div class="form-group">
-             <label>Search</label>
-             <input type="text" ng-model="search" class="form-control" placeholder="Search">
-         </div>
-     </form>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th ng-click="sort('Name')">Name<span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-                    <th ng-click="sort('Abrv')">Abrv<span class="glyphicon sort-icon" ng-show="sortKey=='abrv'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-                    <th>Delete</th>
-                    <th>Update</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr dir-paginate="make in makers|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
-                    <td>{{make.Name}}</td>
-                    <td>{{make.Abrv}}</td>
-                    <!--<td><a class="btn btn-danger btn-xs" href="#/DeleteVehMake/{{user.id}}"></a></td>-->
-                    <td><a ui-sref="DeleteVehMake({makeId: make.id})" class="btn btn-primary btn-xs">Delete</a></td>
-                    <td><a ui-sref="UpdateVehMake({makeId: make.id})" class="btn btn-default btn-xs">Update</a></td>
-                    <td><a ui-sref="DetailsVehMake({makeId: make.id})" class="btn btn-default btn-xs">Details</a></td>
+﻿<h1><a ui-sref="VehModel" class="btn btn-primary btn-xs">Models</a></h1>
+<div ng-controller="VehicleMakeController" ng-init="sortVehMake(page,'Name',searchString)">
+    <a ui-sref="PostVehMake" class="btn btn-primary btn-xs">Add new vehicle maker</a>
+    <br /><br />
+    <form ng-submit="sortVehMake(page,sortOrd,searchString)" class="form-inline">
+        <div class="form-group">
+            <label>Search</label>
+            <input type="text" ng-model="searchString" class="form-control" placeholder="Search">
+        </div>
+    </form>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name<a ng-click="sortVehMake(page,null,searchString)">^</a><a ng-click="sortVehMake(page,'Name_desc',searchString)">ˇ</a></th>
+                <th>Abrv<a ng-click="sortVehMake(page,'Abrv',searchString)">^</a><a ng-click="sortVehMake(page,'Abrv_desc',searchString)">ˇ</a></th>
+                <th>Delete</th>
+                <th>Update</th>
+                <th>Details</th>
             </tr>
-            </tbody>
-        </table>
-     <dir-pagination-controls max-size="5"
-                              direction-links="true"
-                              boundary-links="true">
-     </dir-pagination-controls>
-    </div>
+        </thead>
+        <tbody>
+            <tr ng-repeat="make in makers">
+                <td>{{make.Name}}</td>
+                <td>{{make.Abrv}}</td>
+                <td><a ui-sref="DeleteVehMake({makeId: make.id})" class="btn btn-primary btn-xs">Delete</a></td>
+                <td><a ui-sref="UpdateVehMake({makeId: make.id})" class="btn btn-default btn-xs">Update</a></td>
+                <td><a ui-sref="DetailsVehMake({makeId: make.id})" class="btn btn-default btn-xs">Details</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <form ng-submit="sortVehMake(page,sortOrd,searchString)" class="form-inline">
+        <div class="form-group">
+            <input type="text" ng-model="page" class="form-control" placeholder="Page Number">
+        </div>
+    </form>
+    Sorted by:{{sortOrd}}
+</div>

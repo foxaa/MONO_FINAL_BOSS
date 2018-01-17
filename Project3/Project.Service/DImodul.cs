@@ -8,7 +8,7 @@ using Project.Service.Common;
 
 namespace Project.Service
 {
-    public class DImodul : NinjectModule
+    public class DIModul : NinjectModule
     {
         public override void Load()
         {

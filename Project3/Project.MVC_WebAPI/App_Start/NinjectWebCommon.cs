@@ -48,8 +48,6 @@ namespace Project.MVC_WebAPI.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            //var kernel = new StandardKernel();
-            //var kernel = new StandardKernel(new NinjectSettings() { LoadExtensions = false });
             var settings = new NinjectSettings();
             settings.LoadExtensions = true;
             settings.ExtensionSearchPatterns = settings.ExtensionSearchPatterns.Union(new string[] { "Project.*.dll" }).ToArray();
@@ -57,16 +55,6 @@ namespace Project.MVC_WebAPI.App_Start
 
             try
             {
-                //kernel.Load("Project*.dll");
-                //kernel.Load(AppDomain.CurrentDomain.GetAssemblies());
-                /*kernel.Load("Project.DAL.data.dll");
-                kernel.Load("Project.DAL.service.dll");
-                kernel.Load("Project.Model.data.dll");
-                kernel.Load("Project.Model.service.dll");
-                kernel.Load("Project.Repository.data.dll");
-                kernel.Load("Project.Repository.service.dll");
-                kernel.Load("Project.Service.data.dll");
-                kernel.Load("Project.Service.service.dll");*/
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
                 RegisterServices(kernel);

@@ -42,7 +42,6 @@ namespace Project.Repository
             foreach(var en in entity)
             {
                 _context.Set<T>().Remove(en);
-                //return await _context.SaveChangesAsync();
             }
             return await _context.SaveChangesAsync();
         }
@@ -66,7 +65,6 @@ namespace Project.Repository
         public async Task<T> GetAsync<T>(Guid id) where T : class
         {
             var entity = _context.Set<T>().FindAsync(id);
-            //return await _context.SaveChangesAsync();
             return await entity;
         }
     }

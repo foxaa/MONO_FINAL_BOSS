@@ -44,17 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="DImodul.cs" />
+    <Compile Include="DIModul.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VehicleMakeService.cs" />
     <Compile Include="VehicleModelService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Project.DAL\Project.DAL.csproj">
-      <Project>{ecf7f610-9669-48ac-9add-f5da983b4b03}</Project>
-      <Name>Project.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Project.Model.Common\Project.Model.Common.csproj">
       <Project>{023cdee6-497e-43c5-bf7c-4f13dff5ca15}</Project>
       <Name>Project.Model.Common</Name>

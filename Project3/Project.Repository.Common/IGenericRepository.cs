@@ -14,7 +14,6 @@ namespace Project.Repository.Common
         Task<int> DeleteAllAsync<T>(IEnumerable<T> entity) where T : class;
         IQueryable<T> GetQueryable<T>() where T : class;
         Task<int> UpdateAsync<T>(T entity) where T : class;
-        //Task<bool> AnyAsync<T>()where T:class;
         Task<T> GetAsync<T>(Guid id) where T : class;
     }
 }
