@@ -70,6 +70,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+      <Project>{2913bfee-e1fb-49a6-b1d3-9dce76af6edb}</Project>
+      <Name>Project.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Project.DAL\Project.DAL.csproj">
       <Project>{ecf7f610-9669-48ac-9add-f5da983b4b03}</Project>
       <Name>Project.DAL</Name>

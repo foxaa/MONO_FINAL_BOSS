@@ -10,7 +10,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace Project.DAL
 {
-    public interface IVehicleContext:IDisposable
+    public interface IVehicleContext : IDisposable
     {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         DbEntityEntry<T> Entry<T>(T entity) where T : class;

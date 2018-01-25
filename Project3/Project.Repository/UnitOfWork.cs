@@ -10,7 +10,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Project.Repository
 {
-    public class UnitOfWork:IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private bool disposed;
         private IVehicleContext _vehicleContext;
@@ -20,15 +20,15 @@ namespace Project.Repository
         }
         public virtual void Dispose(bool disposing)
         {
-            if(!disposed)
+            if (!disposed)
             {
-                if(disposing)
+                if (disposing)
                 {
                     _vehicleContext.Dispose();
                 }
             }
             disposed = true;
-        } 
+        }
 
         public void Dispose()
         {

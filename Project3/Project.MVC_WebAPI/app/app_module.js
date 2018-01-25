@@ -1,4 +1,4 @@
-﻿var routerApp = angular.module('routerApp', ['ui.router','angularUtils.directives.dirPagination']);
+﻿var routerApp = angular.module('routerApp', ['ui.router', 'angularUtils.directives.dirPagination']);
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/vehicle-make');
 
@@ -12,7 +12,7 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('PostVehMake', {
-            url: '/vehicle-make/add-make',
+            url: '/vehicle-make/add',
             views: {
                 "root": {
                     templateUrl: 'app/components/VehicleMake/AddVehicleMake.html'
@@ -20,66 +20,66 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('VehModel', {
-            url:'/vehicle-model',
-            views:{
-                "root":{
-                    templateUrl:'app/components/VehicleModel/VehicleModelView.html'
+            url: '/vehicle-model',
+            views: {
+                "root": {
+                    templateUrl: 'app/components/VehicleModel/VehicleModelView.html'
                 }
             }
         })
         .state('PostVehModel', {
-            url: '/vehicle-model/add-model',
+            url: '/vehicle-model/add',
             views: {
                 "root": {
-                    templateUrl:'app/components/VehicleModel/AddVehicleModel.html'
+                    templateUrl: 'app/components/VehicleModel/AddVehicleModel.html'
                 }
             }
         })
         .state('DeleteVehMake', {
-            url: '/vehicle-make/delete-make?makeId',
+            url: '/vehicle-make/delete?makeId',
             views: {
                 "root": {
-                    templateUrl:'app/components/VehicleMake/DeleteVehicleMake.html'
+                    templateUrl: 'app/components/VehicleMake/DeleteVehicleMake.html'
                 }
             }
         })
         .state('DeleteVehModel', {
-            url: '/vehicle-model/delete-model?modelId',
-            views:{
-                "root":{
-                    templateUrl:'app/components/VehicleModel/DeleteVehicleModel.html'
+            url: '/vehicle-model/delete?modelId',
+            views: {
+                "root": {
+                    templateUrl: 'app/components/VehicleModel/DeleteVehicleModel.html'
                 }
             }
         })
         .state('UpdateVehMake', {
-            url: '/vehicle-make/update-make?makeId',
+            url: '/vehicle-make/update?makeId',
             views: {
                 "root": {
-                    templateUrl:'app/components/VehicleMake/UpdateVehicleMake.html'
+                    templateUrl: 'app/components/VehicleMake/UpdateVehicleMake.html'
                 }
             }
         })
         .state('UpdateVehModel', {
-            url: '/vehicle-model/update-model?modelId',
+            url: '/vehicle-model/update?modelId',
             views: {
                 "root": {
-                    templateUrl:'/app/components/VehicleModel/UpdateVehicleModel.html'
+                    templateUrl: '/app/components/VehicleModel/UpdateVehicleModel.html'
                 }
             }
         })
         .state('DetailsVehMake', {
-            url: '/vehicle-make/details-make?makeId',
+            url: '/vehicle-make/details?makeId',
             views: {
                 "root": {
-                    templateUrl:'app/components/VehicleMake/DetailsVehicleMake.html'
+                    templateUrl: 'app/components/VehicleMake/DetailsVehicleMake.html'
                 }
             }
         })
         .state('DetailsVehModel', {
-            url: '/vehicle-model/details-model?modelId',
+            url: '/vehicle-model/details?modelId',
             views: {
                 "root": {
-                    templateUrl:'app/components/VehicleModel/DetailsVehicleModel.html'
+                    templateUrl: 'app/components/VehicleModel/DetailsVehicleModel.html'
                 }
             }
         })

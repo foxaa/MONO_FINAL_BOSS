@@ -11,12 +11,12 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Project.DAL
 {
-    public class VehicleContext:DbContext,IVehicleContext
+    public class VehicleContext : DbContext, IVehicleContext
     {
-       
+
         public VehicleContext() : base("VehicleContext")
         {
-           // base.Configuration.ProxyCreationEnabled = false;
+            // base.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<VehicleMake> VehicleMakers { get; set; }//kreiramo tablicu

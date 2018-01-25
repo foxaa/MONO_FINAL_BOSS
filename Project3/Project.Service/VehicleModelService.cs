@@ -6,49 +6,51 @@ using System.Threading.Tasks;
 using Project.Model.Common;
 using Project.Service.Common;
 using Project.Repository.Common;
+using Project.Common;
+using PagedList;
 
 namespace Project.Service
 {
     public class VehicleModelService : IVehicleModelService
     {
-        private IVehicleModelRepository vmoRep;
+        private IVehicleModelRepository vehicleModelRepository;
         public VehicleModelService(IVehicleModelRepository context)
         {
-            vmoRep = context;
+            vehicleModelRepository = context;
         }
         public async Task<int> AddAsync(IVehicleModelDomainModel entity)
         {
-            return await vmoRep.AddAsync(entity);
+            return await vehicleModelRepository.AddAsync(entity);
         }
 
         public async Task<int> DeleteAllAsync(IEnumerable<IVehicleModelDomainModel> entity)
         {
-            return await vmoRep.DeleteAllAsync(entity);
+            return await vehicleModelRepository.DeleteAllAsync(entity);
         }
 
         public async Task<int> DeleteAsync(Guid id)
         {
-            return await vmoRep.DeleteAsync(id);
+            return await vehicleModelRepository.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<IVehicleModelDomainModel>> GetAllAsync()
         {
-            return await vmoRep.GetAllAsync();
+            return await vehicleModelRepository.GetAllAsync();
         }
 
         public async Task<IVehicleModelDomainModel> GetAsync(Guid id)
         {
-            return await vmoRep.GetAsync(id);
+            return await vehicleModelRepository.GetAsync(id);
         }
 
-        public async Task<IEnumerable<IVehicleModelDomainModel>> SortModelAsync(int pageNumber, int pageSize, string sortOrder, string searchString)
+        public async Task<IPagedList<IVehicleModelDomainModel>> SortModelAsync(Sorting sorting, Filtering filtering, Paging paging)
         {
-            return await vmoRep.SortModelAsync(pageNumber, pageSize, sortOrder, searchString);
+            return await vehicleModelRepository.SortModelAsync(sorting, filtering, paging);
         }
 
         public async Task<int> UpdateAsync(IVehicleModelDomainModel entity)
         {
-            return await vmoRep.UpdateAsync(entity);
+            return await vehicleModelRepository.UpdateAsync(entity);
         }
     }
 }

@@ -10,77 +10,78 @@ using Project.Model.Common;
 using AutoMapper;
 using System.Data.Entity;
 using PagedList;
+using Project.Common;
 
 namespace Project.Repository
 {
     public class VehicleMakeRepository : IVehicleMakeRepository
     {
-        private IGenericRepository genRep;
+        private IGenericRepository genericRepository;
         public VehicleMakeRepository(IGenericRepository context)
         {
-            genRep = context;
+            genericRepository = context;
         }
 
         public async Task<int> AddAsync(IVehicleMakeDomainModel entity)
         {
-            return await genRep.AddAsync(Mapper.Map<VehicleMake>(entity));
+            return await genericRepository.AddAsync(Mapper.Map<VehicleMake>(entity));
         }
 
 
         public async Task<int> DeleteAllAsync(IEnumerable<IVehicleMakeDomainModel> entity)
         {
-            return await genRep.DeleteAllAsync(entity);
+            return await genericRepository.DeleteAllAsync(entity);
         }
 
         public async Task<int> DeleteAsync(Guid id)
         {
-            return await genRep.DeleteAsync<VehicleMake>(id);
+            return await genericRepository.DeleteAsync<VehicleMake>(id);
         }
         public async Task<IEnumerable<IVehicleMakeDomainModel>> GetAllAsync()
-        {         
+        {
 
-            var response = Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
+            var response = Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genericRepository.GetAllAsync<VehicleMake>());
             return response;
         }
 
         public async Task<IVehicleMakeDomainModel> GetAsync(Guid id)
         {
-            return Mapper.Map<IVehicleMakeDomainModel>(await genRep.GetAsync<VehicleMake>(id));
+            return Mapper.Map<IVehicleMakeDomainModel>(await genericRepository.GetAsync<VehicleMake>(id));
         }
 
-        public async Task<IEnumerable<IVehicleMakeDomainModel>> SortMakeAsync(int pageNumber, int pageSize,string sortOrder,string searchString)
+        public async Task<IPagedList<IVehicleMakeDomainModel>> SortMakeAsync(Sorting sorting, Filtering filtering, Paging paging)
         {
             IEnumerable<IVehicleMakeDomainModel> makeEntities;
-            if (string.IsNullOrWhiteSpace(searchString) || searchString=="undefined")
+            if (string.IsNullOrWhiteSpace(filtering.SearchParam) || filtering.SearchParam == "undefined")
             {
-                makeEntities= Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>());
+                makeEntities = Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genericRepository.GetAllAsync<VehicleMake>());
             }
             else
-                makeEntities= Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genRep.GetAllAsync<VehicleMake>()).Where(vm => vm.Name.Contains(searchString));
+                makeEntities = Mapper.Map<IEnumerable<IVehicleMakeDomainModel>>(await genericRepository.GetAllAsync<VehicleMake>()).Where(vm => vm.Name.Contains(filtering.SearchParam));
 
-            switch (sortOrder)
+            switch (sorting.SortOrder)
             {
                 case "Name_desc":
-                    makeEntities=makeEntities.OrderByDescending(v => v.Name);
+                    makeEntities = makeEntities.OrderByDescending(v => v.Name);
                     break;
                 case "Abrv_desc":
-                    makeEntities= makeEntities.OrderByDescending(v => v.Abrv);
+                    makeEntities = makeEntities.OrderByDescending(v => v.Abrv);
                     break;
                 case "Abrv":
-                    makeEntities= makeEntities.OrderBy(v => v.Abrv);
+                    makeEntities = makeEntities.OrderBy(v => v.Abrv);
                     break;
                 default:
-                    makeEntities= makeEntities.OrderBy(v => v.Name);
+                    makeEntities = makeEntities.OrderBy(v => v.Name);
                     break;
 
             }
-            return makeEntities.ToPagedList(pageNumber, pageSize);
-            
+            return makeEntities.ToPagedList(paging.PageNumber, paging.PageSize);
+
         }
 
         public async Task<int> UpdateAsync(IVehicleMakeDomainModel entity)
         {
-            return await genRep.UpdateAsync(Mapper.Map<VehicleMake>(entity));
+            return await genericRepository.UpdateAsync(Mapper.Map<VehicleMake>(entity));
         }
 
     }

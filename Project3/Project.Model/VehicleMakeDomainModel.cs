@@ -8,7 +8,7 @@ using Project.Model.Common;
 
 namespace Project.Model
 {
-    public class VehicleMakeDomainModel:IVehicleMakeDomainModel
+    public class VehicleMakeDomainModel : IVehicleMakeDomainModel
     {
         public Guid id { get; set; }
         public string Name { get; set; }

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Project.DAL.Models;
 using Project.Model.Common;
+using Project.Common;
+using PagedList;
 
 namespace Project.Repository.Common
 {
@@ -16,9 +18,8 @@ namespace Project.Repository.Common
         Task<int> DeleteAllAsync(IEnumerable<IVehicleMakeDomainModel> entity);
         Task<int> UpdateAsync(IVehicleMakeDomainModel entity);
         Task<IVehicleMakeDomainModel> GetAsync(Guid id);
-        Task<IEnumerable<IVehicleMakeDomainModel>> SortMakeAsync(int pageNumber, int pageSize,string sortOrder,string searchString);
+        Task<IPagedList<IVehicleMakeDomainModel>> SortMakeAsync(Sorting sorting, Filtering filtering, Paging paging);
 
-        
 
     }
 }

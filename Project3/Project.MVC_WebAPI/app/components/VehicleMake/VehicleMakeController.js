@@ -1,6 +1,6 @@
 ﻿
 routerApp.controller('VehicleMakeController', ['$scope', '$http', '$location', '$window', '$stateParams', VehicleMakeController]);
-function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
+function VehicleMakeController($scope, $http, $location, $window, $stateParams) {
 
 
     $scope.close = function () {
@@ -24,7 +24,7 @@ function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
         }
     }
     $scope.delete = function () {
-        
+
         var id = $stateParams.makeId;
         $http.delete("api/vehicle-make/delete-make?id=" + id)
             .then(function (response) {
@@ -37,8 +37,8 @@ function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
     }
 
     $scope.updateGetId = function () {
-        var id= $stateParams.makeId;
-        $http.get("api/vehicle-make/get-single-make?id=" +id)
+        var id = $stateParams.makeId;
+        $http.get("api/vehicle-make/get-single-make?id=" + id)
             .then(function (response) {
                 $scope.name = response.data.Name;
                 $scope.abrv = response.data.Abrv;
@@ -51,14 +51,14 @@ function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
             Name: $scope.name,
             Abrv: $scope.abrv,
         };
-        $http.put("api/vehicle-make/update-make",vehicleData)
-        .then(function(response){
+        $http.put("api/vehicle-make/update-make", vehicleData)
+        .then(function (response) {
             $window.alert("Maker update successfull");
             $location.path('/vehicle-make');
         })
     }
 
-    $scope.details= function () {
+    $scope.details = function () {
         var id = $stateParams.makeId;
         $http.get("api/vehicle-make/get-single-make?id=" + id)
             .then(function (response) {
@@ -68,13 +68,13 @@ function VehicleMakeController($scope, $http,$location, $window, $stateParams) {
     }
 
 
-    $scope.sortVehMake = function (page,sortOrder,searchString) {
+    $scope.sortVehMake = function (page, sortOrder, searchString) {
         $scope.sortOrd = sortOrder;
         console.log(sortOrder);
-        $http.get("api/vehicle-make/sort-make?page="+page+"&sortOrder="+sortOrder+"&searchString="+searchString)
+        $http.get("api/vehicle-make/sort-make?page=" + page + "&sortOrder=" + sortOrder + "&searchString=" + searchString)
             .then(function (response) {
                 $scope.makers = response.data;
-                $location.path('/vehicle-make');            
+                $location.path('/vehicle-make');
             })
     }
 }

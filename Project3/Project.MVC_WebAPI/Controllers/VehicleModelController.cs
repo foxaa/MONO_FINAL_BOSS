@@ -15,6 +15,7 @@ using Ninject.Syntax;
 using Project.Service;
 using Project.Repository;
 using Project.Model.Common;
+using Project.Common;
 
 namespace Project.MVC_WebAPI.Controllers
 {
@@ -22,18 +23,25 @@ namespace Project.MVC_WebAPI.Controllers
     public class VehicleModelController : ApiController
     {
 
-        private IVehicleModelService vmSer;
+        private IVehicleModelService vehicleModelService;
         public VehicleModelController(IVehicleModelService cont)
         {
-            this.vmSer = cont;
+            this.vehicleModelService = cont;
         }
         //GET: api/VehicleModel
         [HttpGet]
         [Route("get-model")]
         public async Task<HttpResponseMessage> GetVehicleModels()
         {
-            var response= Mapper.Map<IEnumerable<VehicleModelViewModel>>(await vmSer.GetAllAsync());
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            try
+            {
+                var response = Mapper.Map<IEnumerable<VehicleModelViewModel>>(await vehicleModelService.GetAllAsync());
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Couldn't get vehicle models.");
+            }
         }
 
         [HttpPost]
@@ -43,10 +51,10 @@ namespace Project.MVC_WebAPI.Controllers
             try
             {
                 entity.VehicleModelId = Guid.NewGuid();
-                var response = await vmSer.AddAsync(Mapper.Map<IVehicleModelDomainModel>(entity));
+                var response = await vehicleModelService.AddAsync(Mapper.Map<IVehicleModelDomainModel>(entity));
                 return Request.CreateResponse(HttpStatusCode.OK, response);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Couldn't add vehicle model.");
             }
@@ -55,32 +63,62 @@ namespace Project.MVC_WebAPI.Controllers
         [Route("delete-model")]
         public async Task<HttpResponseMessage> DeleteVehicleModel(Guid id)
         {
-            var response = await vmSer.DeleteAsync(id);
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            try
+            {
+                var response = await vehicleModelService.DeleteAsync(id);
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Couldn't delete vehicle model.");
+            }
         }
         [HttpPut]
         [Route("update-model")]
         public async Task<HttpResponseMessage> UpdateVehicleModel(VehicleModelViewModel entity)
         {
-
-            var response = await vmSer.UpdateAsync(Mapper.Map<IVehicleModelDomainModel>(entity));
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            try
+            {
+                var response = await vehicleModelService.UpdateAsync(Mapper.Map<IVehicleModelDomainModel>(entity));
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Couldn't update vehicle model.");
+            }
         }
         [HttpGet]
         [Route("get-single-model")]
         public async Task<HttpResponseMessage> GetSingleVehicleModel(Guid id)
         {
-            var response = Mapper.Map<VehicleModelViewModel>(await vmSer.GetAsync(id));
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            try
+            {
+                var response = Mapper.Map<VehicleModelViewModel>(await vehicleModelService.GetAsync(id));
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Couldn't get this single vehicle model.");
+            }
         }
         [HttpGet]
         [Route("sort-model")]
         public async Task<HttpResponseMessage> SortVehicleModel(int? page, string sortOrder, string searchString)
         {
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
-            var response = Mapper.Map<IEnumerable<VehicleModelViewModel>>(await vmSer.SortModelAsync(pageNumber, pageSize, sortOrder, searchString));
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            try
+            {
+                int pageSize = 5;
+                int pageNumber = (page ?? 1);
+                Sorting sorting = new Sorting(sortOrder);
+                Filtering filtering = new Filtering(searchString);
+                Paging paging = new Paging(pageNumber, pageSize);
+                var response = Mapper.Map<IEnumerable<VehicleModelViewModel>>(await vehicleModelService.SortModelAsync(sorting, filtering, paging));
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Couldn't sort vehicle models.");
+            }
 
         }
     }
