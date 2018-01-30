@@ -19,7 +19,7 @@ using Project.Common;
 
 namespace Project.MVC_WebAPI.Controllers
 {
-    [RoutePrefix("api/vehicle-model")]
+    [RoutePrefix("api")]
     public class VehicleModelController : ApiController
     {
 
@@ -30,7 +30,7 @@ namespace Project.MVC_WebAPI.Controllers
         }
         //GET: api/VehicleModel
         [HttpGet]
-        [Route("get-model")]
+        [Route("vehicle-model")]
         public async Task<HttpResponseMessage> GetVehicleModels()
         {
             try
@@ -45,7 +45,7 @@ namespace Project.MVC_WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("post-model")]
+        [Route("vehicle-model")]
         public async Task<HttpResponseMessage> PostVehicleModels(VehicleModelDomainModel entity)
         {
             try
@@ -60,7 +60,7 @@ namespace Project.MVC_WebAPI.Controllers
             }
         }
         [HttpDelete]
-        [Route("delete-model")]
+        [Route("vehicle-model")]
         public async Task<HttpResponseMessage> DeleteVehicleModel(Guid id)
         {
             try
@@ -74,7 +74,7 @@ namespace Project.MVC_WebAPI.Controllers
             }
         }
         [HttpPut]
-        [Route("update-model")]
+        [Route("vehicle-model")]
         public async Task<HttpResponseMessage> UpdateVehicleModel(VehicleModelViewModel entity)
         {
             try
@@ -88,7 +88,7 @@ namespace Project.MVC_WebAPI.Controllers
             }
         }
         [HttpGet]
-        [Route("get-single-model")]
+        [Route("vehicle-model")]
         public async Task<HttpResponseMessage> GetSingleVehicleModel(Guid id)
         {
             try
@@ -102,7 +102,7 @@ namespace Project.MVC_WebAPI.Controllers
             }
         }
         [HttpGet]
-        [Route("sort-model")]
+        [Route("vehicle-model/sort")]
         public async Task<HttpResponseMessage> SortVehicleModel(int? page, string sortOrder, string searchString)
         {
             try

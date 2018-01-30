@@ -21,6 +21,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="alert {{alertType}} alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="close()">×</a>
+                    {{alertMsg}}
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
                     <button type="submit" class="btn btn-primary" ng-click="add()">Create</button>

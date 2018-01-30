@@ -30,6 +30,8 @@ namespace Project.MVC_WebAPI
                       "~/app/app_module.js",
                        "~/app/components/VehicleMake/VehicleMakeController.js",
                        "~/app/components/VehicleModel/VehicleModelController.js",
+                       "~/app/components/VehicleMake/VehicleMakeService.js",
+                       "~/app/components/VehicleModel/VehicleModelService.js",
                        "~/app/components/pagination/dirPagination.js"
 
 

@@ -1,6 +1,6 @@
 ﻿
-routerApp.controller('VehicleMakeController', ['$scope', '$http', '$location', '$window', '$stateParams', VehicleMakeController]);
-function VehicleMakeController($scope, $http, $location, $window, $stateParams) {
+routerApp.controller('VehicleMakeController', ['$scope', '$http', '$location', '$window', '$stateParams','vehicleMakeService', VehicleMakeController]);
+function VehicleMakeController($scope, $http, $location, $window, $stateParams,vehicleMakeService) {
 
 
     $scope.close = function () {
@@ -8,37 +8,41 @@ function VehicleMakeController($scope, $http, $location, $window, $stateParams) 
     }
     $scope.add = function () {
         if ($scope.name == undefined || $scope.abrv == undefined) {
-            $window.alert("Please enter all properties.");
+            $scope.alertType = 'alert-warning';
+            $scope.alertMsg = 'Please enter all properties.';
         } else {
             var vehicleData = {
                 Name: $scope.name,
                 Abrv: $scope.abrv,
             };
-            $http.post("api/vehicle-make/post-make", vehicleData)
+            vehicleMakeService.add(vehicleData)
                 .then(function (response) {
-                    $window.alert("Maker added successful.");
-                    $location.path('/vehicle-make');
+                    $scope.alertType = 'alert-success';
+                    $scope.alertMsg = 'Vehicle make added.';
+                   //$location.path('/vehicle-make');
                 }, function (response) {
-                    $window.alert("Error: " + response.error);
+                    $scope.alertType = 'alert-danger';
+                    $scope.alertMsg = 'Error when adding vehicle make.';
                 });
         }
     }
     $scope.delete = function () {
 
         var id = $stateParams.makeId;
-        $http.delete("api/vehicle-make/delete-make?id=" + id)
+        vehicleMakeService.delete(id)
             .then(function (response) {
-                $window.alert("Maker deleted successfuly.");
-                $location.path('/vehicle-make');
+                $scope.alertType = 'alert-success';
+                $scope.alertMsg = 'Vehicle maker deleted.';
             }, function (response) {
-                $window.alert("Error:" + response.error);
+                $scope.alertType = 'alert-warning';
+                $scope.alertMsg = 'Error when trying to delete vehicle maker.';
             }
             );
     }
 
     $scope.updateGetId = function () {
         var id = $stateParams.makeId;
-        $http.get("api/vehicle-make/get-single-make?id=" + id)
+        vehicleMakeService.updateGetId(id)
             .then(function (response) {
                 $scope.name = response.data.Name;
                 $scope.abrv = response.data.Abrv;
@@ -51,16 +55,17 @@ function VehicleMakeController($scope, $http, $location, $window, $stateParams) 
             Name: $scope.name,
             Abrv: $scope.abrv,
         };
-        $http.put("api/vehicle-make/update-make", vehicleData)
+        vehicleMakeService.update(vehicleData)
         .then(function (response) {
-            $window.alert("Maker update successfull");
-            $location.path('/vehicle-make');
+            $scope.alertType = 'alert-success';
+            $scope.alertMsg = 'Vehicle maker updated.';
+            
         })
     }
 
     $scope.details = function () {
         var id = $stateParams.makeId;
-        $http.get("api/vehicle-make/get-single-make?id=" + id)
+        vehicleMakeService.details(id)
             .then(function (response) {
                 $scope.name = response.data.Name;
                 $scope.abrv = response.data.Abrv;
@@ -71,7 +76,7 @@ function VehicleMakeController($scope, $http, $location, $window, $stateParams) 
     $scope.sortVehMake = function (page, sortOrder, searchString) {
         $scope.sortOrd = sortOrder;
         console.log(sortOrder);
-        $http.get("api/vehicle-make/sort-make?page=" + page + "&sortOrder=" + sortOrder + "&searchString=" + searchString)
+        vehicleMakeService.sortVehMake(page,sortOrder,searchString)
             .then(function (response) {
                 $scope.makers = response.data;
                 $location.path('/vehicle-make');

@@ -15,7 +15,7 @@ using PagedList;
 
 namespace Project.MVC_WebAPI.Controllers
 {
-    [RoutePrefix("api/vehicle-make")]
+    [RoutePrefix("api")]
     public class VehicleMakeController : ApiController
     {
         private IVehicleMakeService vehicleMakeService;
@@ -25,7 +25,7 @@ namespace Project.MVC_WebAPI.Controllers
         }
         //GET: api/VehicleModel
         [HttpGet]
-        [Route("get-make")]
+        [Route("vehicle-make")]
         public async Task<HttpResponseMessage> GetVehicleMake()
         {
             try
@@ -39,7 +39,7 @@ namespace Project.MVC_WebAPI.Controllers
             }
         }
         [HttpPost]
-        [Route("post-make")]
+        [Route("vehicle-make")]
         public async Task<HttpResponseMessage> PostVehicleMake(VehicleMakeViewModel entity)
         {
             try
@@ -54,7 +54,7 @@ namespace Project.MVC_WebAPI.Controllers
             }
         }
         [HttpDelete]
-        [Route("delete-make")]
+        [Route("vehicle-make")]
         public async Task<HttpResponseMessage> DeleteVehicleMake(Guid id)
         {
             try
@@ -68,7 +68,7 @@ namespace Project.MVC_WebAPI.Controllers
             }
         }
         [HttpPut]
-        [Route("update-make")]
+        [Route("vehicle-make")]
         public async Task<HttpResponseMessage> UpdateVehicleMake(VehicleMakeViewModel entity)
         {
             try
@@ -82,7 +82,7 @@ namespace Project.MVC_WebAPI.Controllers
             }
         }
         [HttpGet]
-        [Route("get-single-make")]
+        [Route("vehicle-make")]
         public async Task<HttpResponseMessage> GetSingleVehicleMake(Guid id)
         {
             try
@@ -97,7 +97,7 @@ namespace Project.MVC_WebAPI.Controllers
 
         }
         [HttpGet]
-        [Route("sort-make")]
+        [Route("vehicle-make/sort")]
         public async Task<HttpResponseMessage> SortVehicleMake(int? page, string sortOrder, string searchString)
         {
             try
